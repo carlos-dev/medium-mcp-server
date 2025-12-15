@@ -1,9 +1,8 @@
 import {
-  searchMedium,
-  getArticleContent,
-  getTrendingArticles,
-} from "./playwright.js";
-import { parseSearchResults, parseArticleContent } from "./parser.js";
+  searchMediumLight,
+  getArticleContentLight,
+  getTrendingArticlesLight,
+} from "./fetch-scraper.js";
 import type { MediumArticle } from "../utils/types.js";
 import { get, set } from "../cache/simple.js";
 
@@ -20,8 +19,7 @@ export async function searchArticles(
     return cached;
   }
 
-  const html = await searchMedium(query, limit);
-  const articles = parseSearchResults(html, limit);
+  const articles = await searchMediumLight(query, limit);
 
   await set(cacheKey, articles, CACHE_TTL);
   return articles;
@@ -35,21 +33,7 @@ export async function extractArticle(url: string): Promise<MediumArticle> {
     return cached;
   }
 
-  const html = await getArticleContent(url);
-  const articleData = parseArticleContent(html);
-
-  const article: MediumArticle = {
-    title: articleData.title || "Untitled",
-    url,
-    author: articleData.author || "Unknown",
-    authorUrl: articleData.authorUrl,
-    publishedDate: articleData.publishedDate,
-    readingTime: articleData.readingTime,
-    tags: articleData.tags || [],
-    preview: articleData.preview || "",
-    content: articleData.content || "",
-    claps: articleData.claps,
-  };
+  const article = await getArticleContentLight(url);
 
   await set(cacheKey, article, CACHE_TTL);
   return article;
@@ -65,8 +49,7 @@ export async function getTrendingAIArticles(
     return cached;
   }
 
-  const html = await getTrendingArticles("AI", limit);
-  const articles = parseSearchResults(html, limit);
+  const articles = await getTrendingArticlesLight(limit);
 
   await set(cacheKey, articles, CACHE_TTL);
   return articles;
