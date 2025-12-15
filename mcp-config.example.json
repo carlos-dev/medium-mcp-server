@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "medium": {
+      "command": "node",
+      "args": ["dist/index.js"]
+    }
+  }
+}
+
