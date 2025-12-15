@@ -1,10 +1,4 @@
-node_modules/
-dist/
-.cache/
+node_modules
+dist
+.vercel
 *.log
-.env
-.env.local
-.vercel
-
-
-.vercel
