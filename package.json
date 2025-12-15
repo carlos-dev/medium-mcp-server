@@ -5,18 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "echo ok",
     "start": "node dist/server.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.21.1",
     "cheerio": "^1.0.0",
+    "fastify": "^4.27.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20.12.12",
     "@vercel/node": "^3.0.0",
-    "fastify": "^4.27.0",
     "tsx": "^4.15.8",
     "typescript": "^5.4.5"
   }
