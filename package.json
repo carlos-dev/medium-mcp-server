@@ -5,27 +5,32 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "build": "node scripts/build.mjs",
     "start": "node dist/index.js",
     "dev": "tsx src/index.ts",
     "postinstall": "playwright install chromium"
   },
-  "keywords": ["mcp", "medium", "scraping", "ai"],
+  "keywords": [
+    "mcp",
+    "medium",
+    "scraping",
+    "ai"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.4",
+    "cheerio": "^1.0.0",
     "fastify": "^5.0.0",
-    "zod": "^3.23.8",
     "playwright": "^1.48.0",
-    "cheerio": "^1.0.0"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/node": "^20.14.0",
     "@types/cheerio": "^0.22.35",
+    "@types/node": "^20.14.0",
     "@vercel/node": "^3.0.0",
-    "typescript": "^5.5.0",
-    "tsx": "^4.16.0"
+    "esbuild": "^0.27.1",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0"
   }
 }
-
