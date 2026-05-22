@@ -4,17 +4,13 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "outDir": "dist",
-    "rootDir": "src",
+    "rootDir": ".",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "strict": true
+    "strict": true,
+    "types": ["node", "vitest/globals"]
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "include": ["src/**/*.ts", "api/**/*.ts", "tests/**/*.ts"],
+  "exclude": ["node_modules", "dist", ".vercel"]
 }
