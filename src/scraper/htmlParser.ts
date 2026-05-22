@@ -1,7 +1,11 @@
 import * as cheerio from "cheerio";
 import type { MediumArticle } from "./medium.js";
+import { parseApolloSearchResults } from "./apolloSearchParser.js";
 
 export function parseSearchResults(html: string, limit: number): MediumArticle[] {
+  const apollo = parseApolloSearchResults(html, limit);
+  if (apollo) return apollo;
+
   const $ = cheerio.load(html);
   const articles: MediumArticle[] = [];
 
