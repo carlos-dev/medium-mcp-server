@@ -1,0 +1,35 @@
+{
+  "success": true,
+  "payload": {
+    "value": {
+      "id": "abc123",
+      "title": "How to test Medium JSON",
+      "creatorId": "user-id-1",
+      "content": {
+        "bodyModel": {
+          "paragraphs": [
+            { "type": 13, "text": "An H2 heading" },
+            { "type": 1, "text": "Body paragraph one." },
+            { "type": 3, "text": "An H3 heading" },
+            { "type": 1, "text": "Body paragraph two." },
+            { "type": 6, "text": "A blockquote." },
+            { "type": 9, "text": "Bullet item one" },
+            { "type": 9, "text": "Bullet item two" },
+            { "type": 8, "text": "console.log('hi')" }
+          ]
+        }
+      },
+      "virtuals": {
+        "tags": [
+          { "name": "Testing", "slug": "testing" },
+          { "name": "AI", "slug": "ai" }
+        ]
+      }
+    },
+    "references": {
+      "User": {
+        "user-id-1": { "name": "Ada Lovelace", "username": "ada" }
+      }
+    }
+  }
+}

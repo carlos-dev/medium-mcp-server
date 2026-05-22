@@ -9,6 +9,7 @@ import {
   extractArticle,
   filterArticlesByTags,
 } from "./scraper/medium.js";
+import { verifyAuthHeader } from "./auth/token.js";
 
 // Criar servidor Fastify
 const app = Fastify({
@@ -155,7 +156,7 @@ mcpServer.registerTool(
       content: [
         { type: "text" as const, text: JSON.stringify(article, null, 2) },
       ],
-      structuredContent: article as Record<string, unknown>,
+      structuredContent: article as unknown as Record<string, unknown>,
     };
   }
 );
@@ -218,6 +219,14 @@ app.get("/mcp", async () => ({
 
 // MCP POST
 app.post("/mcp", async (request, reply) => {
+  if (process.env.MCP_AUTH_TOKEN) {
+    const verdict = verifyAuthHeader(request.headers.authorization);
+    if (!verdict.ok) {
+      reply.code(401).send({ error: "Unauthorized" });
+      return;
+    }
+  }
+
   const transport = new StreamableHTTPServerTransport({
     sessionIdGenerator: undefined,
     enableJsonResponse: true,
